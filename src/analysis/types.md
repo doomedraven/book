@@ -221,3 +221,17 @@ COW
 [0x00000000]> teb Foo COW
 0x1
 ```
+
+## Golang Runtime Types
+
+Rizin includes definitions for standard Go runtime types such as `stringStruct` (with the `string` typedef), `slice`, `eface`, `iface`, and `hmap`, along with `runtime.*`-prefixed aliases (`runtime.stringStruct`, `runtime.slice`, `runtime.eface`, `runtime.iface`, `runtime.hmap`).
+During `aaa` (for `bin.lang=go`) or `aalg` on binaries with a valid `gopclntab`, Rizin automatically loads the appropriate pointer-width type database (`types-golang-64` or `types-golang-32`).
+
+You can print these types using the `t` (types) and `tc` commands once they are loaded:
+```rz
+[0x00000000]> tc stringStruct
+struct stringStruct {
+	char *str;
+	size_t len;
+};
+```
